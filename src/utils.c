@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 14:07:06 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/17 12:50:11 by pmarkaid         ###   ########.fr       */
+/*   Created: 2024/07/10 16:26:55 by pmarkaid          #+#    #+#             */
+/*   Updated: 2024/07/17 12:55:08 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	exit_on_error(void)
+void remove_extra_spaces(char *str)
 {
-	ft_putstr_fd("Error\n", 2);
-	exit(1);
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (str[i]) {
+        if (!ft_isspace(str[i]) || (i > 0 && !ft_isspace(str[i - 1])))
+            str[j++] = str[i];
+        i++;
+    }
+
+    str[j] = '\0';
 }
 
-int	main(int argc, char **argv)
+void white_spaces_into_spaces(char *str)
 {
-	char	**input;
-	int		**nbrs;
-	
-	if (argc < 2)
-		exit_on_error();
-	input = parse_input(argc, argv);
-	ft_print_char_array(input);
-	nbrs = is_valid_input(input);
-	if(nbrs == NULL)
-		exit_on_error();
-	ft_print_int_array(nbrs);
-	// push_swap(argc, argv);
-	// free_all();
-	return (0);
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        if (ft_isspace(str[i]))
+            str[i] = ' ';
+        i++;
+    }
 }
