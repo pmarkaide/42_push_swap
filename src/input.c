@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:43:50 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/17 12:51:18 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:27:41 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 int check_overflow(long nb, char next_char, int neg) {
     if (neg > 0)
     {
-        if (nb > INT_MAX / 10)
+        if (nb > LONG_MAX / 10)
             return 1;
-        if (nb == INT_MAX / 10 && next_char - '0' > INT_MAX % 10)
+        if (nb == LONG_MAX / 10 && next_char - '0' > LONG_MAX % 10)
             return 1;
     }
     else
     {
-        if (nb > -(long)(INT_MIN / 10))
+        if (nb > -(long)(LONG_MIN / 10))
             return 1;
-        if (nb == -(long)(INT_MIN / 10) && next_char - '0' > -(INT_MIN % 10))
+        if (nb == -(long)(LONG_MIN / 10) && next_char - '0' > -(LONG_MIN % 10))
             return 1;
     }
     return 0;
@@ -52,6 +52,7 @@ int nbr_to_int(char *str, int *error)
             *error = 1;
         nb = 10 * nb + str[i++] - '0';
     }
+    nb *= neg;
     if (nb < INT_MIN || nb > INT_MAX)
         *error = 1;
     return (int)nb;
