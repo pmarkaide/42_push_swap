@@ -6,18 +6,37 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:43:50 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/17 15:46:53 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:00:15 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	no_duplicated_ints(int **nbrs)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (nbrs[i])
+	{
+		j = i + 1;
+		while (nbrs[j])
+		{
+			if (nbrs[i][0] == nbrs[j][0])
+				exit_on_error();
+			j++;
+		}
+		i++;
+	}
+}
+
 int	**is_valid_input(char **input)
 {
 	int	**res;
 
-	res = input_char_to_valid_ints(input);
-	no_duplicated_ints(input);
+	res = input_nbrs_to_valid_ints(input);
+	no_duplicated_ints(res);
 	return (res);
 }
 
