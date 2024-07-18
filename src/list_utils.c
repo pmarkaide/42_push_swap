@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:47:27 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/18 15:33:35 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:08:42 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,27 @@ void add_node_on_top(t_node **head, t_node *node)
     node->next = *head;
     (*head)->prev = node;
     *head = node;
+}
+
+void sa(t_node **a)
+{
+    swap(a);
+    ft_putstr_fd("sa\n", 1);
+}
+
+void sb(t_node **b)
+{
+    swap(b);
+    ft_putstr_fd("sb\n", 1);
+}
+void pa(t_node **b, t_node **a)
+{
+    push(b, a);
+    ft_putstr_fd("pa\n", 1);
+}
+
+void pb(t_node **a, t_node **b)
+{
+    push(a, b);
+    ft_putstr_fd("pb\n", 1);
 }
