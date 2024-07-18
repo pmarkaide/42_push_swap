@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 09:45:43 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/18 16:07:01 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:28:50 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,37 @@ void swap(t_node **head)
     tmp->prev = *head;
 }
 
+void rotate(t_node **head)
+{
+    t_node *tmp;
+
+    if (!*head || !(*head)->next)
+        return ;
+    tmp = *head;
+    *head = (*head)->next;
+    (*head)->prev = NULL;
+    while (tmp->next)
+        tmp = tmp->next;
+    tmp->next = *head;
+    (*head)->prev = tmp;
+    *head = (*head)->next;
+    (*head)->prev->next = NULL;
+    (*head)->prev = NULL;
+}
+
+void rev_rotate(t_node **head)
+{
+    t_node *tmp;
+
+    if (!*head || !(*head)->next)
+        return ;
+    tmp = *head;
+    while (tmp->next)
+        tmp = tmp->next;
+    tmp->prev->next = NULL;
+    tmp->prev = NULL;
+    tmp->next = *head;
+    (*head)->prev = tmp;
+    *head = tmp;
+}
 
