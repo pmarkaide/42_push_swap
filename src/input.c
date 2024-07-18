@@ -6,11 +6,11 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:43:50 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/17 16:00:15 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:46:01 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+# include "push_swap.h"
 
 void	no_duplicated_ints(int **nbrs)
 {

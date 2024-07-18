@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:08 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/17 16:00:41 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:46:07 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 # include <limits.h>             /* for LONG_MAX, LONG_MIN */
 # include <stdlib.h>             /* for malloc, free, exit */
 # include <unistd.h>             /* for read, write */
+
+typedef struct s_node
+{
+    int				nbr;
+    int                index;
+    int         cost;
+    struct s_node	*next;
+    struct s_node	*prev;
+}    t_node;
 
 void	remove_extra_spaces(char *str);
 void	white_spaces_into_spaces(char *str);

@@ -6,11 +6,11 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:05 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/17 15:45:17 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:46:36 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+# include "push_swap.h"
 
 int	**input_nbrs_to_valid_ints(char **input)
 {
