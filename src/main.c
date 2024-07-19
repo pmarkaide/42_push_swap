@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:07:06 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/19 16:29:44 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:39:54 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,11 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		exit_on_error();
 	input = parse_input(argc, argv);
-	// ft_print_char_array(input);
 	nbrs = is_valid_input(input);
-	ft_print_int_array(nbrs);
+	//ft_print_int_array(nbrs);
 	init_stack(&a, nbrs);
-	if(is_sorted(&a))
-		ft_printf("list is sorted\n");
-	else
-		ft_printf("list is NOT sorted\n");
 	//print_list(&a);
-	// push_swap(argc, argv);
+	push_swap(&a, &b);
 	// free_all();
 	return (0);
 }

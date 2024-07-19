@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:47:27 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/19 16:33:46 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:42:06 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	append_node(t_node **head, t_node *node)
 	node->prev = tmp;
 }
 
-int	stack_len(t_node *head)
+int	stack_len(t_node **head)
 {
 	int		len;
 	t_node	*tmp;
 
 	len = 0;
-	tmp = head;
+	tmp = *head;
 	while (tmp)
 	{
 		len++;

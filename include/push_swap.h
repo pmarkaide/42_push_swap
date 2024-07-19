@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:08 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/19 16:29:41 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:42:31 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ void				rev_rotate(t_node **head);
 /* list utils*/
 t_node				*create_node(int nbr);
 void				append_node(t_node **head, t_node *node);
-int					stack_len(t_node *head);
+int					stack_len(t_node **head);
 void				add_node_on_top(t_node **head, t_node *node);
-void print_list(t_node **head);
-int	is_sorted(t_node **head);
+void				print_list(t_node **head);
+int					is_sorted(t_node **head);
+
+/* push_swap */
+void				push_swap(t_node **a, t_node **b);
 
 #endif /* PUSH_SWAP_H */
