@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 13:54:02 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/07/17 15:59:46 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/07/19 10:07:47 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ SRCS_FILES = \
 	main.c \
 	input.c \
 	utils.c \
-	nbr_to_int.c
+	nbr_to_int.c \
+	list_utils.c \
+	moves.c
 
 SRC_DIR = src/
 SRCS = $(addprefix $(SRC_DIR), $(SRCS_FILES))
