@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:08 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/19 10:15:17 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:29:41 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int					**is_valid_input(char **input);
 /* utils */
 void				remove_extra_spaces(char *str);
 void				white_spaces_into_spaces(char *str);
+void				exit_on_error(void);
 
 /* nbr_to_int */
 int					**input_nbrs_to_valid_ints(char **input);
@@ -50,5 +51,7 @@ t_node				*create_node(int nbr);
 void				append_node(t_node **head, t_node *node);
 int					stack_len(t_node *head);
 void				add_node_on_top(t_node **head, t_node *node);
+void print_list(t_node **head);
+int	is_sorted(t_node **head);
 
 #endif /* PUSH_SWAP_H */

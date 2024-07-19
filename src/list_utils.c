@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:47:27 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/18 16:30:55 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:33:46 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,23 @@ void	add_node_on_top(t_node **head, t_node *node)
 	node->next = *head;
 	(*head)->prev = node;
 	*head = node;
+}
+
+void print_list(t_node **head)
+{
+	t_node	*tmp;
+
+	if (!*head)
+	{
+		ft_putstr_fd("list is empty\n", 2);
+		return;
+	}
+	tmp = *head;
+	while (tmp != NULL)
+	{
+		ft_printf("%d\n",tmp->nbr);
+		tmp = tmp->next;
+	}
 }
 
 void	sa(t_node **a)
@@ -134,4 +151,19 @@ void	rrr(t_node **a, t_node **b)
 	rra(a);
 	rrb(b);
 	ft_putstr_fd("rrr\n", 1);
+}
+
+// do I need to check for empty list?
+int is_sorted(t_node **head)
+{
+	t_node	*tmp;
+
+	tmp = *head;
+	while (tmp->next != NULL)
+	{
+		if(tmp->nbr > tmp->next->nbr)
+			return(0);
+		tmp =  tmp->next;
+	}
+	return(1);
 }

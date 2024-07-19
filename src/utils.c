@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:26:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/17 15:44:26 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:57:35 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ void	white_spaces_into_spaces(char *str)
 			str[i] = ' ';
 		i++;
 	}
+}
+void	exit_on_error(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
 }

@@ -6,38 +6,11 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:05 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/18 09:46:36 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:58:23 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	**input_nbrs_to_valid_ints(char **input)
-{
-	int	len;
-	int	**res;
-	int	error;
-	int	i;
-
-	i = 0;
-	error = 0;
-	len = ft_char_array_len(input);
-	res = malloc(sizeof(int *) * len);
-	if (!res)
-		exit_on_error();
-	while (i < len)
-	{
-		res[i] = malloc(sizeof(int));
-		if (!res[i])
-			exit_on_error();
-		res[i][0] = nbr_to_int(input[i], &error);
-		if (error == 1)
-			exit_on_error();
-		i++;
-	}
-	res[i] = NULL;
-	return (res);
-}
 
 int	check_overflow(long nb, char next_char, int neg)
 {
@@ -83,4 +56,30 @@ int	nbr_to_int(char *str, int *error)
 	if (nb < INT_MIN || nb > INT_MAX)
 		*error = 1;
 	return ((int)nb);
+}
+int	**input_nbrs_to_valid_ints(char **input)
+{
+	int	len;
+	int	**res;
+	int	error;
+	int	i;
+
+	i = 0;
+	error = 0;
+	len = ft_char_array_len(input);
+	res = malloc(sizeof(int *) * len);
+	if (!res)
+		exit_on_error();
+	while (i < len)
+	{
+		res[i] = malloc(sizeof(int));
+		if (!res[i])
+			exit_on_error();
+		res[i][0] = nbr_to_int(input[i], &error);
+		if (error == 1)
+			exit_on_error();
+		i++;
+	}
+	res[i] = NULL;
+	return (res);
 }
