@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:08 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/20 11:13:51 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/20 12:08:41 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,17 @@ void				push(t_node **from, t_node **to);
 void				swap(t_node **head);
 void				rotate(t_node **head);
 void				rev_rotate(t_node **head);
-void 			  ra(t_node **head);
-void 			  rb(t_node **head);
-void 			  rr(t_node **a, t_node **b);
-void 			  rra(t_node **head);
-void 			  rrb(t_node **head);
-void 			  rrr(t_node **a, t_node **b);
-void 			  sa(t_node **head);
-void 			  sb(t_node **head);
-void 			  ss(t_node **a, t_node **b);
-
+void				ra(t_node **head);
+void				rb(t_node **head);
+void				rr(t_node **a, t_node **b);
+void				rra(t_node **head);
+void				rrb(t_node **head);
+void				rrr(t_node **a, t_node **b);
+void				sa(t_node **head);
+void				sb(t_node **head);
+void				ss(t_node **a, t_node **b);
+void				pa(t_node **a, t_node **b);
+void				pb(t_node **a, t_node **b);
 
 /* list utils*/
 t_node				*create_node(int nbr);
@@ -64,8 +65,9 @@ void				add_node_on_top(t_node **head, t_node *node);
 void				print_list(t_node **head);
 int					is_sorted(t_node **head);
 t_node				*find_highest(t_node **head);
+int					distance_to_top(t_node **head, t_node *node);
 
 /* push_swap */
-void push_swap(t_node **a);
+void				push_swap(t_node **a, t_node **b);
 
 #endif /* PUSH_SWAP_H */
