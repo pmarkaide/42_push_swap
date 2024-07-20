@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:08 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/20 12:08:41 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/20 14:03:25 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ int					distance_to_top(t_node **head, t_node *node);
 
 /* push_swap */
 void				push_swap(t_node **a, t_node **b);
+void sort_three(t_node **head);
 
 #endif /* PUSH_SWAP_H */

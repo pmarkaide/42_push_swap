@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:47:27 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/20 11:12:45 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/20 12:46:55 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void print_list(t_node **head)
 		ft_printf("%d\n",tmp->nbr);
 		tmp = tmp->next;
 	}
+	ft_printf("%s","\n");
 }
 
 // do I need to check for empty list?
@@ -114,4 +115,30 @@ t_node *find_highest(t_node **head)
 		tmp = tmp->next;
 	}
 	return(highest);
+}
+
+int distance_to_top(t_node **head, t_node *node)
+{
+	t_node	*tmp;
+	int		top;
+	int		bottom;
+
+	tmp = *head;
+	top = 0;
+	while (tmp != node)
+	{
+		top++;
+		tmp = tmp->next;
+	}
+	tmp = node;
+	bottom = 0;
+	while (tmp != NULL)
+	{
+		bottom--;
+		tmp = tmp->next;
+	}
+	if(abs(top) < abs(bottom))
+		return(top);
+	else
+		return(bottom);
 }

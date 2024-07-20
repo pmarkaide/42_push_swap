@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:07:06 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/19 16:39:54 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/20 12:45:34 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	main(int argc, char **argv)
 	nbrs = is_valid_input(input);
 	//ft_print_int_array(nbrs);
 	init_stack(&a, nbrs);
-	//print_list(&a);
+	// print_list(&a);
+	// print_list(&b);
 	push_swap(&a, &b);
 	// free_all();
 	return (0);
