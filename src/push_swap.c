@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:35:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 11:09:46 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:49:11 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ void execute_moves(t_node **a, t_node**b, int *costs)
     }
     else
     {
-        while(i < costs[0])
+        while(i > costs[0])
         {
             rra(a);
-            i++;
+            i--;
         }
     }
     i = 0;
     if(costs[1] > 0)
     {
-        while(i < costs[0])
+        while(i < costs[1])
         {
             rb(b);
             i++;
@@ -44,10 +44,10 @@ void execute_moves(t_node **a, t_node**b, int *costs)
     }
     else
     {
-        while(i < costs[0])
+        while(i > costs[1])
         {
             rrb(b);
-            i++;
+            i--;
         }
     }
     pb(a, b);
@@ -98,19 +98,21 @@ int *cheapest_moves(t_node **a, t_node **b, t_node *node)
 {
 	int *costs;
 	int *cheapest;
-	int total;
+	long total;
 
 	cheapest = (int *)malloc(sizeof(int) * 2);
 	if (!cheapest)
 		exit_on_error();
-    total = 1;
+    total = LONG_MAX;
 	while(node != NULL)
 	{
 		costs = calculate_costs(a, b, node);
-		total = abs(costs[0]) + abs(costs[1]);
-        ft_printf("nbr = %d\tcosts[%d,%d] total = %d\n", node->nbr, costs[0], costs[1], total);
+    ft_printf("nbr = %d\tcosts[%d,%d] total = %d\n", node->nbr, costs[0], costs[1], abs(costs[0]) + abs(costs[1]));
 		if(total > abs(costs[0]) + abs(costs[1]))
+        {
+            total = abs(costs[0]) + abs(costs[1]);
             cheapest = costs;
+        }
 		node = node->next;
 	}
 	return (cheapest);
@@ -119,39 +121,24 @@ int *cheapest_moves(t_node **a, t_node **b, t_node *node)
 void turksort(t_node **a, t_node **b)
 {
     int len;
-    int i;
-    //t_node *tmp;
-    //int dist = 0;
     int *cheapest;
 
-    len = stack_len(a);
-    i = 0;
+    len = stack_len(a) - 2;
 	cheapest = (int *)malloc(sizeof(int) * 2);
 	if (!cheapest)
 		exit_on_error();
-    
     pb(a, b);
     pb(a, b);
-    pb(a, b);
-    sort_three(b);
-    sb(b);
-    rrb(b);
-    print_list(a);
-    print_list(b);
-    len = len - 3;
-    ft_printf("len = %d\n", len);
-    while(i < len && len > 3 && a != NULL)
+    while(len > 3 && a != NULL)
     {
 		cheapest = cheapest_moves(a, b, *a);
-	    ft_printf("nbr = %d\tcheapest[%d,%d]\n", (*a)->nbr, cheapest[0], cheapest[1]);
         execute_moves(a, b, cheapest);
-        print_list(a);
-        print_list(b);
-        i++;
 		len--;
     }
+    sort_three(a);
     print_list(a);
     print_list(b);
+
 }
 
 
