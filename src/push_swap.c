@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:35:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/20 15:16:40 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:28:06 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,44 @@ int *calculate_costs(t_node **a, t_node **b, t_node *node)
     return (costs);
 }
 
+int *cheapest_moves(t_node **a, t_node **b, t_node *node)
+{
+	int *costs;
+	int *cheapest;
+	int total;
+
+	cheapest = (int *)malloc(sizeof(int) * 2);
+	if (!cheapest)
+		exit_on_error();
+	while(node != NULL)
+	{
+		costs = calculate_costs(a, b, node);
+		ft_printf("nbr = %d\tcosts[%d,%d]\n", node->nbr, costs[0], costs[1]);
+		total = abs(costs[0]) + abs(costs[1]);
+		// ft_printf("total = %d\n", total);
+		if(total < abs(costs[0]) + abs(costs[1]))
+		{
+			cheapest[0] = costs[0];
+			cheapest[1] = costs[1];
+		}
+		node = node->next;
+	}
+	return (cheapest);
+}
+
 void turksort(t_node **a, t_node **b)
 {
     int len;
     int i;
     //t_node *tmp;
     //int dist = 0;
-    int *costs;
+    int *cheapest;
 
     len = stack_len(a);
     i = 0;
+	cheapest = (int *)malloc(sizeof(int) * 2);
+	if (!cheapest)
+		exit_on_error();
     
     pb(a, b);
     pb(a, b);
@@ -109,11 +137,11 @@ void turksort(t_node **a, t_node **b)
     //tmp = *a;
     while(i < len && len > 3 && a != NULL)
     {
-        costs = calculate_costs(a, b, (*a));
-        ft_printf("nbr = %d\tcosts[%d,%d]\n", (*a)->nbr, costs[0], costs[1]);
-        execute_moves(a, b, costs);
-        pa(a, b);
-        i++;  
+		cheapest = cheapest_moves(a, b, *a);
+	    ft_printf("nbr = %d\tcheapest[%d,%d]\n", (*a)->nbr, cheapest[0], cheapest[1]);
+        execute_moves(a, b, cheapest);
+        i++;
+		len--;
     }
     print_list(a);
     print_list(b);
