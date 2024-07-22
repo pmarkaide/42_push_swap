@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:35:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 17:05:13 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:57:32 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,20 @@ void execute_moves(t_node **a, t_node**b, int *costs)
 
 t_node *best_node_in_a(t_node **a, int nbr)
 {
-    int len;
     long bigger;
     t_node *tmp;
     t_node *min;
     t_node *closest_big;
 
-    len = stack_len(a);
     tmp = *a;
     bigger = LONG_MAX;
     min = find_smallest(a);
     closest_big = min;
     while(tmp != NULL)
     {
-        if(tmp->nbr > nbr && tmp->nbr - nbr < bigger)
+        if(tmp->nbr > nbr && (long)tmp->nbr - (long)nbr < bigger)
         {
-            // //ft_printf("closest of nbr: %d tmp->nbr: %d\n", nbr, tmp->nbr);
-            bigger = tmp->nbr - nbr;
+            bigger = (long)tmp->nbr - (long)nbr;
             closest_big= tmp;
         }
         tmp = tmp->next;
@@ -80,24 +77,20 @@ t_node *best_node_in_a(t_node **a, int nbr)
 
 t_node *best_node_in_b(t_node **b, int nbr)
 {
-    int len;
     long smaller;
     t_node *tmp;
     t_node *max;
-    t_node *min;
     t_node *closest_small;
 
-    len = stack_len(b);
     tmp = *b;
     smaller = LONG_MAX;
     max = find_highest(b);
-    min = find_smallest(b);
     closest_small = max;
     while(tmp != NULL)
     {
-        if(tmp->nbr < nbr && nbr - tmp->nbr < smaller)
+        if(tmp->nbr < nbr && (long)nbr - (long)tmp->nbr < smaller)
         {
-            smaller = nbr - tmp->nbr;
+            smaller = (long)nbr - (long)tmp->nbr;
             closest_small = tmp;
         }
         tmp = tmp->next;
@@ -133,7 +126,6 @@ int *cheapest_moves(t_node **a, t_node **b, t_node *node)
 	while(node != NULL)
 	{
 		costs = calculate_costs(a, b, node);
-        //ft_printf("nbr %d, costs[%d,%d]\n",node->nbr, costs[0], costs[1]);
 		if(total > abs(costs[0]) + abs(costs[1]))
         {
             total = abs(costs[0]) + abs(costs[1]);
@@ -158,17 +150,12 @@ void turksort(t_node **a, t_node **b)
 		exit_on_error();
     pb(a, b);
     pb(a, b);
-  // print_list(a);
-  // print_list(b);
     while(len > 3 && a != NULL)
     {
 		cheapest = cheapest_moves(a, b, *a);
-        //ft_printf("cheapest[%d,%d]\n", cheapest[0], cheapest[1]);
         execute_moves(a, b, cheapest);
         pb(a, b);
 		len--;
-      // print_list(a);
-      // print_list(b);
     }
     sort_three(a);
     while(*b != NULL)
@@ -181,8 +168,6 @@ void turksort(t_node **a, t_node **b)
     }
     while((*a)->nbr != find_smallest(a)->nbr)
         ra(a);
-   // print_list(a);
-   // print_list(b);
 }
 
 
@@ -209,13 +194,11 @@ void push_swap(t_node **a, t_node **b)
     {
         if((*a)->nbr > (*a)->next->nbr)
             sa(a);
-        //// print_list(a);
         exit(1);
     }
     if(stack_len(a) == 3)
     {
         sort_three(a);
-        //// print_list(a);
         exit(1);
     }
     turksort(a, b);
