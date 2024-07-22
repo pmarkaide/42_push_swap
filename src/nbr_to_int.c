@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:05 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/19 15:58:23 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:55:39 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ int	**input_nbrs_to_valid_ints(char **input)
 			exit_on_error();
 		res[i][0] = nbr_to_int(input[i], &error);
 		if (error == 1)
+		{
+			ft_printf("Overflow error\n");
 			exit_on_error();
+		}
 		i++;
 	}
 	res[i] = NULL;
