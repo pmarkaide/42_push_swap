@@ -68,40 +68,40 @@ void	add_node_on_top(t_node **head, t_node *node)
 	*head = node;
 }
 
-void print_list(t_node **head)
+void	print_list(t_node **head)
 {
 	t_node	*tmp;
 
 	if (!*head)
 	{
 		ft_putstr_fd("list is empty\n", 2);
-		return;
+		return ;
 	}
 	tmp = *head;
 	while (tmp != NULL)
 	{
-		ft_printf("%d\n",tmp->nbr);
+		ft_printf("%d\n", tmp->nbr);
 		tmp = tmp->next;
 	}
-	ft_printf("%s","\n");
+	ft_printf("%s", "\n");
 }
 
 // do I need to check for empty list?
-int is_sorted(t_node **head)
+int	is_sorted(t_node **head)
 {
 	t_node	*tmp;
 
 	tmp = *head;
 	while (tmp->next != NULL)
 	{
-		if(tmp->nbr > tmp->next->nbr)
-			return(0);
-		tmp =  tmp->next;
+		if (tmp->nbr > tmp->next->nbr)
+			return (0);
+		tmp = tmp->next;
 	}
-	return(1);
+	return (1);
 }
 
-t_node *find_highest(t_node **head)
+t_node	*find_highest(t_node **head)
 {
 	t_node	*tmp;
 	t_node	*highest;
@@ -110,14 +110,14 @@ t_node *find_highest(t_node **head)
 	highest = tmp;
 	while (tmp != NULL)
 	{
-		if(tmp->nbr > highest->nbr)
+		if (tmp->nbr > highest->nbr)
 			highest = tmp;
 		tmp = tmp->next;
 	}
-	return(highest);
+	return (highest);
 }
 
-int distance_to_top(t_node **head, t_node *node)
+int	distance_to_top(t_node **head, t_node *node)
 {
 	t_node	*tmp;
 	int		top;
@@ -137,13 +137,13 @@ int distance_to_top(t_node **head, t_node *node)
 		bottom--;
 		tmp = tmp->next;
 	}
-	if(abs(top) < abs(bottom))
-		return(top);
+	if (abs(top) < abs(bottom))
+		return (top);
 	else
-		return(bottom);
+		return (bottom);
 }
 
-t_node *find_smallest(t_node **head)
+t_node	*find_smallest(t_node **head)
 {
 	t_node	*tmp;
 	t_node	*smallest;
@@ -152,9 +152,9 @@ t_node *find_smallest(t_node **head)
 	smallest = tmp;
 	while (tmp != NULL)
 	{
-		if(tmp->nbr < smallest->nbr)
+		if (tmp->nbr < smallest->nbr)
 			smallest = tmp;
 		tmp = tmp->next;
 	}
-	return(smallest);
+	return (smallest);
 }

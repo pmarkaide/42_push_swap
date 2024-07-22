@@ -6,29 +6,30 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:07:06 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/20 12:45:34 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:03:09 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void init_stack(t_node **a, int **nbrs)
+void	init_stack(t_node **a, int **nbrs)
 {
-	int len;
-	int i;
-	t_node *tmp;
+	int		len;
+	int		i;
+	t_node	*tmp;
 
 	len = 0;
 	i = 0;
 	len = ft_int_array_len(nbrs);
-	while(i < len)
+	while (i < len)
 	{
 		tmp = create_node(nbrs[i][0]);
-		append_node(a,tmp);
+		append_node(a, tmp);
 		i++;
 	}
 }
 
+// TODO: free all mallocs
 int	main(int argc, char **argv)
 {
 	char	**input;
@@ -42,11 +43,7 @@ int	main(int argc, char **argv)
 		exit_on_error();
 	input = parse_input(argc, argv);
 	nbrs = is_valid_input(input);
-	//ft_print_int_array(nbrs);
 	init_stack(&a, nbrs);
-	// print_list(&a);
-	// print_list(&b);
 	push_swap(&a, &b);
-	// free_all();
 	return (0);
 }

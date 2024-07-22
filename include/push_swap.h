@@ -70,6 +70,6 @@ int					distance_to_top(t_node **head, t_node *node);
 
 /* push_swap */
 void				push_swap(t_node **a, t_node **b);
-void sort_three(t_node **head);
+void				sort_three(t_node **head);
 
 #endif /* PUSH_SWAP_H */
