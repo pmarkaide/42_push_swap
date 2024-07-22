@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:35:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 17:57:32 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:12:25 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,33 @@ int	*cheapest_moves(t_node **a, t_node **b, t_node *node)
 	return (cheapest);
 }
 
+void final_sort_a(t_node **a)
+{
+	t_node	*tmp;
+	t_node	*min;
+	int i;
+
+	i = 0;
+	tmp = *a;
+	min = find_smallest(a);
+	while (tmp->nbr != min->nbr)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	tmp = *a;
+	if(i < stack_len(a) / 2)
+	{
+		while((*a)->nbr != find_smallest(a)->nbr)
+			ra(a);
+	}
+	else
+	{
+		while((*a)->nbr != find_smallest(a)->nbr)
+			rra(a);
+	}
+}
+
 void	turksort(t_node **a, t_node **b)
 {
 	int		len;
@@ -165,8 +192,7 @@ void	turksort(t_node **a, t_node **b)
 		execute_moves(a, b, cheapest);
 		pa(b, a);
 	}
-	while ((*a)->nbr != find_smallest(a)->nbr)
-		ra(a);
+	final_sort_a(a);
 }
 
 void	sort_three(t_node **head)
