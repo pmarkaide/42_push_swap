@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:08 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 13:07:30 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:10:10 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int					**is_valid_input(char **input);
 void				remove_extra_spaces(char *str);
 void				white_spaces_into_spaces(char *str);
 void				exit_on_error(void);
+int					ft_abs(int n);
 
 /* nbr_to_int */
 int					**input_nbrs_to_valid_ints(char **input);
@@ -45,17 +46,17 @@ void				push(t_node **from, t_node **to);
 void				swap(t_node **head);
 void				rotate(t_node **head);
 void				rev_rotate(t_node **head);
-void				ra(t_node **head);
-void				rb(t_node **head);
-void				rr(t_node **a, t_node **b);
-void				rra(t_node **head);
-void				rrb(t_node **head);
-void				rrr(t_node **a, t_node **b);
+void				ra(t_node **head, int n);
+void				rb(t_node **head, int n);
+void				rr(t_node **a, t_node **b, int n);
+void				rra(t_node **head, int n);
+void				rrb(t_node **head, int n);
+void				rrr(t_node **a, t_node **b, int n);
 void				sa(t_node **head);
 void				sb(t_node **head);
 void				ss(t_node **a, t_node **b);
-void				pa(t_node **a, t_node **b);
-void				pb(t_node **a, t_node **b);
+void				pa(t_node **a, t_node **b, int n);
+void				pb(t_node **a, t_node **b, int n);
 
 /* list utils*/
 t_node				*create_node(int nbr);

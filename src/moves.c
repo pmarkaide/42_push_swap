@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 09:45:43 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/20 13:03:07 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:26:23 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,52 +98,76 @@ void	ss(t_node **a, t_node **b)
 	ft_putstr_fd("ss\n", 1);
 }
 
-void	pa(t_node **b, t_node **a)
+void	pa(t_node **b, t_node **a, int n)
 {
-	push(b, a);
-	ft_putstr_fd("pa\n", 1);
+	while(n-- > 0)
+	{
+		push(b, a);
+		ft_putstr_fd("pa\n", 1);
+	}
 }
 
-void	pb(t_node **a, t_node **b)
+void	pb(t_node **a, t_node **b, int n)
 {
-	push(a, b);
-	ft_putstr_fd("pb\n", 1);
+	while(n-- > 0)
+	{
+		push(a, b);
+		ft_putstr_fd("pb\n", 1);
+	}
 }
 
-void	ra(t_node **a)
+void	ra(t_node **a, int n)
 {
-	rotate(a);
-	ft_putstr_fd("ra\n", 1);
+	while(n-- > 0)
+	{
+		rotate(a);
+		ft_putstr_fd("ra\n", 1);
+	}
 }
 
-void	rb(t_node **b)
+void	rb(t_node **b, int n)
 {
-	rotate(b);
-	ft_putstr_fd("rb\n", 1);
+	while(n-- > 0)
+	{
+		rotate(b);
+		ft_putstr_fd("rb\n", 1);
+	}
 }
 
-void	rr(t_node **a, t_node **b)
+void	rr(t_node **a, t_node **b, int n)
 {
-	ra(a);
-	rb(b);
-	ft_putstr_fd("rr\n", 1);
+	while(n-- > 0)
+	{
+		ra(a, 1);
+		rb(b, 1);
+		ft_putstr_fd("rr\n", 1);
+	}
 }
 
-void	rra(t_node **a)
+void	rra(t_node **a, int n)
 {
-	rev_rotate(a);
-	ft_putstr_fd("rra\n", 1);
+	while(n-- > 0)
+	{
+		rev_rotate(a);
+		ft_putstr_fd("rra\n", 1);
+	}
 }
 
-void	rrb(t_node **b)
+void	rrb(t_node **b, int n)
 {
-	rev_rotate(b);
-	ft_putstr_fd("rrb\n", 1);
+	while(n-- > 0)
+	{
+		rev_rotate(b);
+		ft_putstr_fd("rrb\n", 1);
+	}
 }
 
-void	rrr(t_node **a, t_node **b)
+void	rrr(t_node **a, t_node **b, int n)
 {
-	rra(a);
-	rrb(b);
-	ft_putstr_fd("rrr\n", 1);
+	while(n-- > 0)
+	{
+		rra(a, 1);
+		rrb(b, 1);
+		ft_putstr_fd("rrr\n", 1);
+	}
 }

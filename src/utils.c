@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:26:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 18:02:04 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:26:35 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,11 @@ void	exit_on_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
+}
+
+int	ft_abs(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
 }

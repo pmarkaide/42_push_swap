@@ -6,50 +6,106 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:35:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 21:12:25 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 23:20:31 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void execute_rr(t_node **a, t_node **b, int *costs)
+{
+	int common;
+	int extra;
+	
+	if(costs[0] > costs[1])
+		common = costs[0];
+	else
+		common = costs[1];
+	rr(a, b, common);
+	extra = costs[0] - costs[1];
+	if(extra > 0)
+		ra(a, extra);
+	extra = costs[1] - costs[0];
+	if(extra > 0)
+		rb(b, extra);
+}
+
+void execute_rrr(t_node **a, t_node **b, int *costs)
+{
+	int common;
+	int extra;
+	
+	costs[0] = -costs[0];
+	costs[1] = -costs[1];	
+	if(costs[0] > costs[1])
+		common = costs[0];
+	else
+		common = costs[1];
+	rrr(a, b, common);
+	extra = costs[0] - costs[1];
+	if(extra > 0)
+		rra(a, extra);
+	extra = costs[1] - costs[0];
+	if(extra > 0)
+		rrb(b, extra);
+}
+
 void	execute_moves(t_node **a, t_node **b, int *costs)
 {
-	int	i;
+	if((costs[0] > 0 && costs[1] > 0))
+		execute_rr(a, b, costs);
+	else if ((costs[0] < 0 && costs[1] < 0))
+		execute_rrr(a, b, costs);
+	else if(costs[0] >= 0 && costs[1] <= 0)
+	{
+		ra(a, costs[0]);
+		rrb(b, -costs[1]);
+	}
+	else if(costs[0] <= 0 && costs[1] >= 0)
+	{
+		rra(a, -costs[0]);
+		rb(b, costs[1]);
+	}
+	
+		
 
-	i = 0;
-	if (costs[0] > 0)
-	{
-		while (i < costs[0])
-		{
-			ra(a);
-			i++;
-		}
-	}
-	else
-	{
-		while (i > costs[0])
-		{
-			rra(a);
-			i--;
-		}
-	}
-	i = 0;
-	if (costs[1] > 0)
-	{
-		while (i < costs[1])
-		{
-			rb(b);
-			i++;
-		}
-	}
-	else
-	{
-		while (i > costs[1])
-		{
-			rrb(b);
-			i--;
-		}
-	}
+
+	// int	i;
+
+	// i = 0;
+	// if (costs[0] > 0)
+	// {
+	// 	while (i < costs[0])
+	// 	{
+	// 		ra(a);
+	// 		i++;
+	// 	}
+	// }
+	// else
+	// {
+	// 	while (i > costs[0])
+	// 	{
+	// 		rra(a);
+	// 		i--;
+	// 	}
+	// }
+	// i = 0;
+	// if (costs[1] > 0)
+	// {
+	// 	while (i < costs[1])
+	// 	{
+	// 		rb(b);
+	// 		i++;
+	// 	}
+	// }
+	// else
+	// {
+	// 	while (i > costs[1])
+	// 	{
+	// 		rrb(b);
+	// 		i--;
+	// 	}
+	// }
 }
 
 t_node	*best_node_in_a(t_node **a, int nbr)
@@ -112,6 +168,18 @@ int	*calculate_costs(t_node **a, t_node **b, t_node *node)
 	return (costs);
 }
 
+int optimized_total(int *costs)
+{
+	if((costs[0] > 0 && costs[1] > 0) || (costs[0] < 0 && costs[1] < 0))
+		if(ft_abs(costs[0]) > ft_abs(costs[1]))
+			return (ft_abs(costs[0]));
+		else
+			return (ft_abs(costs[1]));
+	else
+		return (ft_abs(costs[0]) + ft_abs(costs[1]));
+	
+}
+
 int	*cheapest_moves(t_node **a, t_node **b, t_node *node)
 {
 	int		*costs;
@@ -125,9 +193,12 @@ int	*cheapest_moves(t_node **a, t_node **b, t_node *node)
 	while (node != NULL)
 	{
 		costs = calculate_costs(a, b, node);
-		if (total > abs(costs[0]) + abs(costs[1]))
+		// ft_printf("Costs for %d: %d %d\n", node->nbr, costs[0], costs[1]);
+		// ft_printf("Initial total: %d\n", ft_abs(costs[0]) + ft_abs(costs[1]));
+		// ft_printf("Optimized total: %d\n", optimized_total(costs));
+		if (total > optimized_total(costs))
 		{
-			total = abs(costs[0]) + abs(costs[1]);
+			total = optimized_total(costs);
 			cheapest[0] = costs[0];
 			cheapest[1] = costs[1];
 		}
@@ -155,12 +226,12 @@ void final_sort_a(t_node **a)
 	if(i < stack_len(a) / 2)
 	{
 		while((*a)->nbr != find_smallest(a)->nbr)
-			ra(a);
+			ra(a, 1);
 	}
 	else
 	{
 		while((*a)->nbr != find_smallest(a)->nbr)
-			rra(a);
+			rra(a, 1);
 	}
 }
 
@@ -174,13 +245,14 @@ void	turksort(t_node **a, t_node **b)
 	cheapest = (int *)malloc(sizeof(int) * 2);
 	if (!cheapest)
 		exit_on_error();
-	pb(a, b);
-	pb(a, b);
+	pb(a, b, 2);
 	while (len > 3 && a != NULL)
 	{
 		cheapest = cheapest_moves(a, b, *a);
 		execute_moves(a, b, cheapest);
-		pb(a, b);
+		pb(a, b, 1);
+		// print_list(a);
+		// print_list(b);
 		len--;
 	}
 	sort_three(a);
@@ -190,9 +262,11 @@ void	turksort(t_node **a, t_node **b)
 		cheapest[0] = distance_to_top(a, best_a);
 		cheapest[1] = 0;
 		execute_moves(a, b, cheapest);
-		pa(b, a);
+		pa(b, a, 1);
 	}
 	final_sort_a(a);
+	// print_list(a);
+	// print_list(b);
 }
 
 void	sort_three(t_node **head)
@@ -203,9 +277,9 @@ void	sort_three(t_node **head)
 	tmp = *head;
 	highest = find_highest(head);
 	if (tmp->nbr == highest->nbr)
-		ra(head);
+		ra(head, 1);
 	else if (tmp->next->nbr == highest->nbr)
-		rra(head);
+		rra(head, 1);
 	if ((*head)->nbr > (*head)->next->nbr)
 		sa(head);
 }
