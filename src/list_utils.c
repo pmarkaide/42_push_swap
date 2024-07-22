@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:47:27 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/20 12:46:55 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:02:33 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,4 +141,20 @@ int distance_to_top(t_node **head, t_node *node)
 		return(top);
 	else
 		return(bottom);
+}
+
+t_node *find_smallest(t_node **head)
+{
+	t_node	*tmp;
+	t_node	*smallest;
+
+	tmp = *head;
+	smallest = tmp;
+	while (tmp != NULL)
+	{
+		if(tmp->nbr < smallest->nbr)
+			smallest = tmp;
+		tmp = tmp->next;
+	}
+	return(smallest);
 }

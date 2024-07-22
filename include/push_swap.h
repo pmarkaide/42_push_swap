@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:08 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/20 14:03:25 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:07:30 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void				add_node_on_top(t_node **head, t_node *node);
 void				print_list(t_node **head);
 int					is_sorted(t_node **head);
 t_node				*find_highest(t_node **head);
+t_node				*find_smallest(t_node **head);
 int					distance_to_top(t_node **head, t_node *node);
 
 /* push_swap */
