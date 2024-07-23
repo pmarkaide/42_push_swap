@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 09:45:43 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 22:26:23 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/23 17:12:35 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	sb(t_node **b)
 
 void	ss(t_node **a, t_node **b)
 {
-	sa(a);
-	sb(b);
+	swap(a);
+	swap(b);
 	ft_putstr_fd("ss\n", 1);
 }
 
@@ -138,8 +138,8 @@ void	rr(t_node **a, t_node **b, int n)
 {
 	while(n-- > 0)
 	{
-		ra(a, 1);
-		rb(b, 1);
+		rotate(a);
+		rotate(b);
 		ft_putstr_fd("rr\n", 1);
 	}
 }
@@ -166,8 +166,8 @@ void	rrr(t_node **a, t_node **b, int n)
 {
 	while(n-- > 0)
 	{
-		rra(a, 1);
-		rrb(b, 1);
+		rev_rotate(a);
+		rev_rotate(b);
 		ft_putstr_fd("rrr\n", 1);
 	}
 }

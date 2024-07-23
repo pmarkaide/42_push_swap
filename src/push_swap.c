@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:35:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 23:20:31 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/23 21:55:14 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void execute_rr(t_node **a, t_node **b, int *costs)
 	int common;
 	int extra;
 	
-	if(costs[0] > costs[1])
+	if(costs[0] < costs[1])
 		common = costs[0];
 	else
 		common = costs[1];
@@ -37,7 +37,7 @@ void execute_rrr(t_node **a, t_node **b, int *costs)
 	
 	costs[0] = -costs[0];
 	costs[1] = -costs[1];	
-	if(costs[0] > costs[1])
+	if(costs[0] < costs[1])
 		common = costs[0];
 	else
 		common = costs[1];
@@ -70,42 +70,7 @@ void	execute_moves(t_node **a, t_node **b, int *costs)
 		
 
 
-	// int	i;
 
-	// i = 0;
-	// if (costs[0] > 0)
-	// {
-	// 	while (i < costs[0])
-	// 	{
-	// 		ra(a);
-	// 		i++;
-	// 	}
-	// }
-	// else
-	// {
-	// 	while (i > costs[0])
-	// 	{
-	// 		rra(a);
-	// 		i--;
-	// 	}
-	// }
-	// i = 0;
-	// if (costs[1] > 0)
-	// {
-	// 	while (i < costs[1])
-	// 	{
-	// 		rb(b);
-	// 		i++;
-	// 	}
-	// }
-	// else
-	// {
-	// 	while (i > costs[1])
-	// 	{
-	// 		rrb(b);
-	// 		i--;
-	// 	}
-	// }
 }
 
 t_node	*best_node_in_a(t_node **a, int nbr)
@@ -193,9 +158,6 @@ int	*cheapest_moves(t_node **a, t_node **b, t_node *node)
 	while (node != NULL)
 	{
 		costs = calculate_costs(a, b, node);
-		// ft_printf("Costs for %d: %d %d\n", node->nbr, costs[0], costs[1]);
-		// ft_printf("Initial total: %d\n", ft_abs(costs[0]) + ft_abs(costs[1]));
-		// ft_printf("Optimized total: %d\n", optimized_total(costs));
 		if (total > optimized_total(costs))
 		{
 			total = optimized_total(costs);
@@ -251,8 +213,6 @@ void	turksort(t_node **a, t_node **b)
 		cheapest = cheapest_moves(a, b, *a);
 		execute_moves(a, b, cheapest);
 		pb(a, b, 1);
-		// print_list(a);
-		// print_list(b);
 		len--;
 	}
 	sort_three(a);
@@ -265,8 +225,6 @@ void	turksort(t_node **a, t_node **b)
 		pa(b, a, 1);
 	}
 	final_sort_a(a);
-	// print_list(a);
-	// print_list(b);
 }
 
 void	sort_three(t_node **head)
