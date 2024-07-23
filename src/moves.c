@@ -100,7 +100,7 @@ void	ss(t_node **a, t_node **b)
 
 void	pa(t_node **b, t_node **a, int n)
 {
-	while(n-- > 0)
+	while (n-- > 0)
 	{
 		push(b, a);
 		ft_putstr_fd("pa\n", 1);
@@ -109,7 +109,7 @@ void	pa(t_node **b, t_node **a, int n)
 
 void	pb(t_node **a, t_node **b, int n)
 {
-	while(n-- > 0)
+	while (n-- > 0)
 	{
 		push(a, b);
 		ft_putstr_fd("pb\n", 1);
@@ -118,7 +118,7 @@ void	pb(t_node **a, t_node **b, int n)
 
 void	ra(t_node **a, int n)
 {
-	while(n-- > 0)
+	while (n-- > 0)
 	{
 		rotate(a);
 		ft_putstr_fd("ra\n", 1);
@@ -127,7 +127,7 @@ void	ra(t_node **a, int n)
 
 void	rb(t_node **b, int n)
 {
-	while(n-- > 0)
+	while (n-- > 0)
 	{
 		rotate(b);
 		ft_putstr_fd("rb\n", 1);
@@ -136,7 +136,7 @@ void	rb(t_node **b, int n)
 
 void	rr(t_node **a, t_node **b, int n)
 {
-	while(n-- > 0)
+	while (n-- > 0)
 	{
 		rotate(a);
 		rotate(b);
@@ -146,7 +146,7 @@ void	rr(t_node **a, t_node **b, int n)
 
 void	rra(t_node **a, int n)
 {
-	while(n-- > 0)
+	while (n-- > 0)
 	{
 		rev_rotate(a);
 		ft_putstr_fd("rra\n", 1);
@@ -155,7 +155,7 @@ void	rra(t_node **a, int n)
 
 void	rrb(t_node **b, int n)
 {
-	while(n-- > 0)
+	while (n-- > 0)
 	{
 		rev_rotate(b);
 		ft_putstr_fd("rrb\n", 1);
@@ -164,7 +164,7 @@ void	rrb(t_node **b, int n)
 
 void	rrr(t_node **a, t_node **b, int n)
 {
-	while(n-- > 0)
+	while (n-- > 0)
 	{
 		rev_rotate(a);
 		rev_rotate(b);

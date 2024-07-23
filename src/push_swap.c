@@ -12,65 +12,60 @@
 
 #include "push_swap.h"
 
-void execute_rr(t_node **a, t_node **b, int *costs)
+void	execute_rr(t_node **a, t_node **b, int *costs)
 {
-	int common;
-	int extra;
-	
-	if(costs[0] < costs[1])
+	int	common;
+	int	extra;
+
+	if (costs[0] < costs[1])
 		common = costs[0];
 	else
 		common = costs[1];
 	rr(a, b, common);
 	extra = costs[0] - costs[1];
-	if(extra > 0)
+	if (extra > 0)
 		ra(a, extra);
 	extra = costs[1] - costs[0];
-	if(extra > 0)
+	if (extra > 0)
 		rb(b, extra);
 }
 
-void execute_rrr(t_node **a, t_node **b, int *costs)
+void	execute_rrr(t_node **a, t_node **b, int *costs)
 {
-	int common;
-	int extra;
-	
+	int	common;
+	int	extra;
+
 	costs[0] = -costs[0];
-	costs[1] = -costs[1];	
-	if(costs[0] < costs[1])
+	costs[1] = -costs[1];
+	if (costs[0] < costs[1])
 		common = costs[0];
 	else
 		common = costs[1];
 	rrr(a, b, common);
 	extra = costs[0] - costs[1];
-	if(extra > 0)
+	if (extra > 0)
 		rra(a, extra);
 	extra = costs[1] - costs[0];
-	if(extra > 0)
+	if (extra > 0)
 		rrb(b, extra);
 }
 
 void	execute_moves(t_node **a, t_node **b, int *costs)
 {
-	if((costs[0] > 0 && costs[1] > 0))
+	if ((costs[0] > 0 && costs[1] > 0))
 		execute_rr(a, b, costs);
 	else if ((costs[0] < 0 && costs[1] < 0))
 		execute_rrr(a, b, costs);
-	else if(costs[0] >= 0 && costs[1] <= 0)
+	else if (costs[0] >= 0 && costs[1] <= 0)
 	{
 		ra(a, costs[0]);
 		rrb(b, -costs[1]);
 	}
-	else if(costs[0] <= 0 && costs[1] >= 0)
+	else if (costs[0] <= 0 && costs[1] >= 0)
 	{
 		rra(a, -costs[0]);
 		rb(b, costs[1]);
 	}
-	
-		
-
-
-
 }
 
 t_node	*best_node_in_a(t_node **a, int nbr)
@@ -133,16 +128,15 @@ int	*calculate_costs(t_node **a, t_node **b, t_node *node)
 	return (costs);
 }
 
-int optimized_total(int *costs)
+int	optimized_total(int *costs)
 {
-	if((costs[0] > 0 && costs[1] > 0) || (costs[0] < 0 && costs[1] < 0))
-		if(ft_abs(costs[0]) > ft_abs(costs[1]))
+	if ((costs[0] > 0 && costs[1] > 0) || (costs[0] < 0 && costs[1] < 0))
+		if (ft_abs(costs[0]) > ft_abs(costs[1]))
 			return (ft_abs(costs[0]));
 		else
 			return (ft_abs(costs[1]));
 	else
 		return (ft_abs(costs[0]) + ft_abs(costs[1]));
-	
 }
 
 int	*cheapest_moves(t_node **a, t_node **b, t_node *node)
@@ -170,11 +164,11 @@ int	*cheapest_moves(t_node **a, t_node **b, t_node *node)
 	return (cheapest);
 }
 
-void final_sort_a(t_node **a)
+void	final_sort_a(t_node **a)
 {
 	t_node	*tmp;
 	t_node	*min;
-	int i;
+	int		i;
 
 	i = 0;
 	tmp = *a;
@@ -185,14 +179,14 @@ void final_sort_a(t_node **a)
 		tmp = tmp->next;
 	}
 	tmp = *a;
-	if(i < stack_len(a) / 2)
+	if (i < stack_len(a) / 2)
 	{
-		while((*a)->nbr != find_smallest(a)->nbr)
+		while ((*a)->nbr != find_smallest(a)->nbr)
 			ra(a, 1);
 	}
 	else
 	{
-		while((*a)->nbr != find_smallest(a)->nbr)
+		while ((*a)->nbr != find_smallest(a)->nbr)
 			rra(a, 1);
 	}
 }
