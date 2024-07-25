@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:08 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 22:10:10 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:36:17 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ typedef struct s_node
 	struct s_node	*prev;
 }					t_node;
 
+typedef enum e_move
+{
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR
+}					t_move;
+
 /* input */
 char				**parse_input(int argc, char **argv);
 int					**is_valid_input(char **input);
@@ -46,25 +61,21 @@ void				push(t_node **from, t_node **to);
 void				swap(t_node **head);
 void				rotate(t_node **head);
 void				rev_rotate(t_node **head);
-void				ra(t_node **head, int n);
-void				rb(t_node **head, int n);
-void				rr(t_node **a, t_node **b, int n);
-void				rra(t_node **head, int n);
-void				rrb(t_node **head, int n);
-void				rrr(t_node **a, t_node **b, int n);
-void				sa(t_node **head);
-void				sb(t_node **head);
-void				ss(t_node **a, t_node **b);
-void				pa(t_node **a, t_node **b, int n);
-void				pb(t_node **a, t_node **b, int n);
+
+/* execute_moves */
+void				execute_moves(t_node **a, t_node **b, t_move move, int n);
+void				print_moves(t_move move, int n);
+void				execute_rr(t_node **a, t_node **b, int *costs);
+void				execute_rrr(t_node **a, t_node **b, int *costs);
+void				execute_cheapest_moves(t_node **a, t_node **b, int *costs);
 
 /* list utils*/
 t_node				*create_node(int nbr);
 void				append_node(t_node **head, t_node *node);
 int					stack_len(t_node **head);
-void				add_node_on_top(t_node **head, t_node *node);
-void				print_list(t_node **head);
 int					is_sorted(t_node **head);
+
+/* stack_utils.c */
 t_node				*find_highest(t_node **head);
 t_node				*find_smallest(t_node **head);
 int					distance_to_top(t_node **head, t_node *node);
@@ -72,5 +83,9 @@ int					distance_to_top(t_node **head, t_node *node);
 /* push_swap */
 void				push_swap(t_node **a, t_node **b);
 void				sort_three(t_node **head);
+
+/* costs */
+t_node				*best_node_in_a(t_node **a, int nbr);
+int					*cheapest_moves(t_node **a, t_node **b, t_node *node);
 
 #endif /* PUSH_SWAP_H */

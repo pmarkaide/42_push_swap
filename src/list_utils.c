@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:47:27 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 13:02:33 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:33:47 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,13 @@ int	stack_len(t_node **head)
 	return (len);
 }
 
-void	add_node_on_top(t_node **head, t_node *node)
-{
-	if (!*head)
-	{
-		*head = node;
-		return ;
-	}
-	node->next = *head;
-	(*head)->prev = node;
-	*head = node;
-}
-
-void	print_list(t_node **head)
+void	print_stack(t_node **head)
 {
 	t_node	*tmp;
 
 	if (!*head)
 	{
-		ft_putstr_fd("list is empty\n", 2);
+		ft_putstr_fd("stack is empty\n", 2);
 		return ;
 	}
 	tmp = *head;
@@ -86,7 +74,6 @@ void	print_list(t_node **head)
 	ft_printf("%s", "\n");
 }
 
-// do I need to check for empty list?
 int	is_sorted(t_node **head)
 {
 	t_node	*tmp;
@@ -99,62 +86,4 @@ int	is_sorted(t_node **head)
 		tmp = tmp->next;
 	}
 	return (1);
-}
-
-t_node	*find_highest(t_node **head)
-{
-	t_node	*tmp;
-	t_node	*highest;
-
-	tmp = *head;
-	highest = tmp;
-	while (tmp != NULL)
-	{
-		if (tmp->nbr > highest->nbr)
-			highest = tmp;
-		tmp = tmp->next;
-	}
-	return (highest);
-}
-
-int	distance_to_top(t_node **head, t_node *node)
-{
-	t_node	*tmp;
-	int		top;
-	int		bottom;
-
-	tmp = *head;
-	top = 0;
-	while (tmp != node)
-	{
-		top++;
-		tmp = tmp->next;
-	}
-	tmp = node;
-	bottom = 0;
-	while (tmp != NULL)
-	{
-		bottom--;
-		tmp = tmp->next;
-	}
-	if (abs(top) < abs(bottom))
-		return (top);
-	else
-		return (bottom);
-}
-
-t_node	*find_smallest(t_node **head)
-{
-	t_node	*tmp;
-	t_node	*smallest;
-
-	tmp = *head;
-	smallest = tmp;
-	while (tmp != NULL)
-	{
-		if (tmp->nbr < smallest->nbr)
-			smallest = tmp;
-		tmp = tmp->next;
-	}
-	return (smallest);
 }
