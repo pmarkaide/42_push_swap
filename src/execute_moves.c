@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 11:51:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/25 15:42:48 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:11:53 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ void	execute_rr(t_node **a, t_node **b, int *costs)
 	}
 	extra = costs[0] - costs[1];
 	if (extra > 0)
-		execute_moves(a, NULL, RA, extra);
+		execute_moves(a, b, RA, extra);
 	extra = costs[1] - costs[0];
 	if (extra > 0)
-		execute_moves(b, NULL, RB, extra);
+		execute_moves(a, b, RB, extra);
 }
 
 void	execute_rrr(t_node **a, t_node **b, int *costs)
@@ -101,7 +101,7 @@ void	execute_rrr(t_node **a, t_node **b, int *costs)
 		execute_moves(a, NULL, RRA, extra);
 	extra = costs[1] - costs[0];
 	if (extra > 0)
-		execute_moves(b, NULL, RRB, extra);
+		execute_moves(NULL, b, RRB, extra);
 }
 
 void	execute_cheapest_moves(t_node **a, t_node **b, int *costs)
@@ -113,11 +113,11 @@ void	execute_cheapest_moves(t_node **a, t_node **b, int *costs)
 	else if (costs[0] >= 0 && costs[1] <= 0)
 	{
 		execute_moves(a, NULL, RA, costs[0]);
-		execute_moves(b, NULL, RRB, -costs[1]);
+		execute_moves(NULL, b, RRB, -costs[1]);
 	}
 	else if (costs[0] <= 0 && costs[1] >= 0)
 	{
 		execute_moves(a, NULL, RRA, -costs[0]);
-		execute_moves(b, NULL, RB, costs[1]);
+		execute_moves(NULL, b, RB, costs[1]);
 	}
 }
