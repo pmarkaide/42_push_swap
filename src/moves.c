@@ -6,12 +6,21 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 09:45:43 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/25 11:58:26 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:02:22 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief Pop the top element from one stack and pushes it to another stack.
+ *        a->b c->d, pb, b a->c->d
+ *
+ * @param from The stack to pop from.
+ * @param to The stack to push to.
+ *
+ * @return None, stack is modified in place.
+ */
 void	push(t_node **from, t_node **to)
 {
 	t_node	*tmp;
@@ -28,6 +37,14 @@ void	push(t_node **from, t_node **to)
 	*to = tmp;
 }
 
+/**
+ * @brief Swap the top two elements of the stack.
+ *        a->b->c, sa, b->a->c
+ *
+ * @param head The stack to perform the swap on.
+ *
+ * @return None, stack is modified in place.
+ */
 void	swap(t_node **head)
 {
 	t_node	*tmp;
@@ -44,6 +61,14 @@ void	swap(t_node **head)
 	tmp->prev = *head;
 }
 
+/**
+ * @brief Rotate the stack by moving the top element to the bottom.
+ *        a->b->c, ra, b->c->a
+ *
+ * @param head The stack to perform the rotation on.
+ *
+ * @return None, stack is modified in place.
+ */
 void	rotate(t_node **head)
 {
 	t_node	*tmp;
@@ -60,6 +85,14 @@ void	rotate(t_node **head)
 	tmp->next->next = NULL;
 }
 
+/**
+ * @brief rotate the stack by moving the bottom element to the top.
+ *        a->b->c, rra, c->a->b
+ *
+ * @param head The stack to perform the reverse rotation on.
+ *
+ * @return None, stack is modified in place.
+ */
 void	rev_rotate(t_node **head)
 {
 	t_node	*tmp;
