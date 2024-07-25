@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:35:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/25 12:14:21 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:48:24 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	turksort(t_node **a, t_node **b)
 		cheapest[0] = distance_to_top(a, best_a);
 		cheapest[1] = 0;
 		execute_cheapest_moves(a, b, cheapest);
-		execute_moves(b, a, PA, 1);
+		execute_moves(a, b, PA, 1);
 	}
 	final_sort_a(a);
 }

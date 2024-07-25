@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:08 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/25 12:36:17 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:39:52 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void				rev_rotate(t_node **head);
 
 /* execute_moves */
 void				execute_moves(t_node **a, t_node **b, t_move move, int n);
-void				print_moves(t_move move, int n);
+void				print_moves(t_move move);
 void				execute_rr(t_node **a, t_node **b, int *costs);
 void				execute_rrr(t_node **a, t_node **b, int *costs);
 void				execute_cheapest_moves(t_node **a, t_node **b, int *costs);
