@@ -6,24 +6,24 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:43:50 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/26 13:04:52 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:38:07 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	no_duplicated_ints(int **nbrs)
+int	no_duplicated_ints(int *nbrs, int len)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (nbrs[i])
+	while (i < len)
 	{
 		j = i + 1;
-		while (nbrs[j])
+		while (j < len)
 		{
-			if (nbrs[i][0] == nbrs[j][0])
+			if (nbrs[i] == nbrs[j])
 				return (-1);
 			j++;
 		}
@@ -32,13 +32,19 @@ int	no_duplicated_ints(int **nbrs)
 	return (0);
 }
 
-int	**is_valid_input(char **input)
+int	*nbrs_are_valid(char **input, int len)
 {
-	int	**res;
+	int	*nbrs;
+	int	error;
 
-	res = input_nbrs_to_valid_ints(input);
-	no_duplicated_ints(res);
-	return (res);
+	nbrs = input_nbrs_to_valid_ints(input, len);
+	error = no_duplicated_ints(nbrs, len);
+	if (error == -1)
+	{
+		free(nbrs);
+		nbrs = NULL;
+	}
+	return (nbrs);
 }
 
 int	is_valid_string(char *str, char valid)
@@ -74,23 +80,23 @@ int	clean_input(int argc, char **argv)
 	return (0);
 }
 
-int arguments_format_is_correct(int argc, char **argv)
+int	arguments_format_is_correct(int argc, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 1;
-	while(i < argc)
+	while (i < argc)
 	{
-		if(ft_str_empty(argv[i]) == 1)
+		if (ft_str_empty(argv[i]) == 1)
 			return (-1);
-		if(argc == 2)
+		if (argc == 2)
 		{
-			if(is_valid_string(argv[1], ' ') != 0)
+			if (is_valid_string(argv[1], ' ') != 0)
 				return (-1);
 		}
 		else
 		{
-			if(is_valid_string(argv[i], '\0') != 0)
+			if (is_valid_string(argv[i], '\0') != 0)
 				return (-1);
 		}
 		i++;
@@ -104,7 +110,7 @@ char	**parse_input(int argc, char **argv)
 	int		i;
 
 	i = 0;
-	if(arguments_format_is_correct(argc, argv) == -1)
+	if (arguments_format_is_correct(argc, argv) == -1)
 		return (NULL);
 	if (argc == 2)
 		res = ft_split(argv[1], ' ');

@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:05 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/26 11:34:53 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:34:38 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,27 +58,26 @@ int	nbr_to_int(char *str, int *error)
 	return ((int)nb);
 }
 
-int	**input_nbrs_to_valid_ints(char **input)
+int	*input_nbrs_to_valid_ints(char **input, int len)
 {
-	int	**res;
+	int	*res;
 	int	error;
 	int	i;
 
 	i = 0;
 	error = 0;
-	res = malloc(sizeof(int *) * ft_char_array_len(input));
+	res = malloc(sizeof(int) * (len));
 	if (!res)
 		return (NULL);
 	while (input[i])
 	{
-		res[i] = malloc(sizeof(int));
-		if (!res[i])
-			return (NULL);
-		res[i][0] = nbr_to_int(input[i], &error);
+		res[i] = nbr_to_int(input[i], &error);
 		if (error == 1)
+		{
+			free_int_array(&res);
 			return (NULL);
+		}
 		i++;
 	}
-	res[i] = NULL;
 	return (res);
 }

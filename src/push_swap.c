@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:35:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/25 16:10:38 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:00:31 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,18 @@ void	final_sort_a(t_node **a)
 	}
 }
 
-void	turksort(t_node **a, t_node **b)
+void turksort(t_node **a, t_node **b)
 {
 	int		len;
-	int		*cheapest;
+	int		cheapest[2];
 	t_node	*best_a;
 
 	len = stack_len(a) - 2;
-	cheapest = (int *)malloc(sizeof(int) * 2);
-	if (!cheapest)
-		exit_on_error();
+
 	execute_moves(a, b, PB, 2);
 	while (len-- > 3 && a != NULL)
 	{
-		cheapest = cheapest_moves(a, b, *a);
+		cheapest_moves(a, b, *a, cheapest);
 		execute_cheapest_moves(a, b, cheapest);
 		execute_moves(a, b, PB, 1);
 	}
@@ -86,17 +84,17 @@ void	sort_three(t_node **head)
 void	push_swap(t_node **a, t_node **b)
 {
 	if (is_sorted(a) || stack_len(a) == 1)
-		exit(1);
+		return ;
 	if (stack_len(a) == 2)
 	{
 		if ((*a)->nbr > (*a)->next->nbr)
 			execute_moves(a, NULL, SA, 1);
-		exit(1);
+		return ;
 	}
 	if (stack_len(a) == 3)
 	{
 		sort_three(a);
-		exit(1);
+		return ;
 	}
-	turksort(a, b);
+	turksort(a, b);	
 }

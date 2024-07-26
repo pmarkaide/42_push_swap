@@ -6,46 +6,58 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:07:06 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/26 12:20:11 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:58:24 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_stack(t_node **a, int **nbrs)
+void	init_stack(t_node **a, int *nbrs, int len)
 {
-	int		len;
 	int		i;
 	t_node	*tmp;
 
-	len = 0;
 	i = 0;
-	len = ft_int_array_len(nbrs);
 	while (i < len)
 	{
-		tmp = create_node(nbrs[i][0]);
+		tmp = create_node(nbrs[i]);
+		if(tmp == NULL)
+		{
+	
+			free_stack(a);
+			*a = NULL;
+			return ;
+		}
 		append_node(a, tmp);
 		i++;
 	}
 }
 
-// TODO: free all mallocs
 int	main(int argc, char **argv)
 {
 	char	**input;
-	int		**nbrs;
+	int		*nbrs;
+	int len;
 	t_node	*a;
 	t_node	*b;
 
+	input = NULL;
+	nbrs = NULL;
 	a = NULL;
 	b = NULL;
 	if (argc < 2)
-		exit_on_error();
+		exit_on_error(&a, &b, input, nbrs);
 	input = parse_input(argc, argv);
 	if(input == NULL)
-		exit_on_error();
-	nbrs = is_valid_input(input);
-	init_stack(&a, nbrs);
+		exit_on_error(&a, &b, input, nbrs);
+	len = ft_char_array_len(input);
+	nbrs = nbrs_are_valid(input, len);
+	if(nbrs == NULL)
+		exit_on_error(&a, &b, input, nbrs);
+	init_stack(&a, nbrs, len);
+	if(a == NULL)
+		exit_on_error(&a, &b, input, nbrs);
 	push_swap(&a, &b);
+	free_all(&a, &b, input, nbrs);
 	return (0);
 }

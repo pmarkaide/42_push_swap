@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:08 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/26 12:20:47 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:49:56 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ typedef enum e_move
 
 /* input */
 char				**parse_input(int argc, char **argv);
-int					**is_valid_input(char **input);
+int					*nbrs_are_valid(char **input, int len);
 
 /* utils */
 void				remove_extra_spaces(char *str);
 void				white_spaces_into_spaces(char *str);
-void				exit_on_error(void);
+void				exit_on_error(t_node **a, t_node **b, char **input, int *nbrs);
 int					ft_abs(int n);
 
 /* nbr_to_int */
-int					**input_nbrs_to_valid_ints(char **input);
+int					*input_nbrs_to_valid_ints(char **input, int len);
 
 /* moves */
 void				push(t_node **from, t_node **to);
@@ -74,6 +74,7 @@ t_node				*create_node(int nbr);
 void				append_node(t_node **head, t_node *node);
 int					stack_len(t_node **head);
 int					is_sorted(t_node **head);
+void				print_stack(t_node **head);
 
 /* stack_utils.c */
 t_node				*find_highest(t_node **head);
@@ -86,6 +87,12 @@ void				sort_three(t_node **head);
 
 /* costs */
 t_node				*best_node_in_a(t_node **a, int nbr);
-int					*cheapest_moves(t_node **a, t_node **b, t_node *node);
+void				cheapest_moves(t_node **a, t_node **b, t_node *node, int *costs);
+
+/* free */
+void				free_int_array(int **array);
+void				free_char_array(char ***array);
+void				free_all(t_node **a, t_node **b, char **input, int *nbrs);
+void				free_stack(t_node **stack);
 
 #endif /* PUSH_SWAP_H */

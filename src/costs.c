@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:14:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/25 22:01:38 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:00:44 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,13 @@ t_node	*best_node_in_b(t_node **b, int nbr)
  * @return int* Array containing the costs for rotating stacks A and B.
  * 		   Positive cost for rotations, negative for reverse rotating.
  */
-int	*calculate_costs(t_node **a, t_node **b, t_node *node)
+void	calculate_costs(t_node **a, t_node **b, t_node *node, int *costs)
 {
-	int		*costs;
 	t_node	*best_node;
 
-	costs = (int *)malloc(sizeof(int) * 2);
-	if (!costs)
-		exit_on_error();
 	best_node = best_node_in_b(b, node->nbr);
 	costs[0] = distance_to_top(a, node);
 	costs[1] = distance_to_top(b, best_node);
-	return (costs);
 }
 
 /**
@@ -130,27 +125,21 @@ int	optimized_total(int *costs)
  * @param node The node to calculate the moves for.
  * @return int* Array containing the cheapest moves for stacks A and B.
  */
-int	*cheapest_moves(t_node **a, t_node **b, t_node *node)
+ void cheapest_moves(t_node **a, t_node **b, t_node *node, int *cheapest)
 {
-	int		*costs;
-	int		*cheapest;
+	int		costs[2];
 	long	total;
 
-	cheapest = (int *)malloc(sizeof(int) * 2);
-	if (!cheapest)
-		exit_on_error();
 	total = LONG_MAX;
 	while (node != NULL)
 	{
-		costs = calculate_costs(a, b, node);
+		calculate_costs(a, b, node, costs);
 		if (total > optimized_total(costs))
 		{
 			total = optimized_total(costs);
 			cheapest[0] = costs[0];
 			cheapest[1] = costs[1];
 		}
-		free(costs);
 		node = node->next;
 	}
-	return (cheapest);
 }

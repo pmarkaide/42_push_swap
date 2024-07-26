@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:47:27 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/25 12:33:47 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/26 14:06:36 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_node	*create_node(int nbr)
 
 	node = (t_node *)malloc(sizeof(t_node));
 	if (!node)
-		exit_on_error();
+		return (NULL);
 	node->nbr = nbr;
 	node->next = NULL;
 	node->prev = NULL;

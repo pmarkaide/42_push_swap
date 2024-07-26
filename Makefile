@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 13:54:02 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/07/25 12:35:24 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/07/26 14:00:28 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS_FILES = \
 	push_swap.c \
 	execute_moves.c \
 	costs.c \
-	stack_utils.c
+	stack_utils.c \
+	free.c
 
 SRC_DIR = src/
 SRCS = $(addprefix $(SRC_DIR), $(SRCS_FILES))
