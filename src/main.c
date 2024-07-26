@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:07:06 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 18:03:09 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:20:11 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		exit_on_error();
 	input = parse_input(argc, argv);
+	if(input == NULL)
+		exit_on_error();
 	nbrs = is_valid_input(input);
 	init_stack(&a, nbrs);
 	push_swap(&a, &b);

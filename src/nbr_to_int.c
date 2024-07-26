@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:05 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/22 18:01:33 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/26 11:34:53 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,15 @@ int	**input_nbrs_to_valid_ints(char **input)
 	error = 0;
 	res = malloc(sizeof(int *) * ft_char_array_len(input));
 	if (!res)
-		exit_on_error();
+		return (NULL);
 	while (input[i])
 	{
 		res[i] = malloc(sizeof(int));
 		if (!res[i])
-			exit_on_error();
+			return (NULL);
 		res[i][0] = nbr_to_int(input[i], &error);
 		if (error == 1)
-		{
-			ft_printf("Overflow error\n");
-			exit_on_error();
-		}
+			return (NULL);
 		i++;
 	}
 	res[i] = NULL;

@@ -6,13 +6,13 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:43:50 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/18 09:46:01 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/26 13:04:52 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	no_duplicated_ints(int **nbrs)
+int	no_duplicated_ints(int **nbrs)
 {
 	int	i;
 	int	j;
@@ -24,11 +24,12 @@ void	no_duplicated_ints(int **nbrs)
 		while (nbrs[j])
 		{
 			if (nbrs[i][0] == nbrs[j][0])
-				exit_on_error();
+				return (-1);
 			j++;
 		}
 		i++;
 	}
+	return (0);
 }
 
 int	**is_valid_input(char **input)
@@ -40,7 +41,7 @@ int	**is_valid_input(char **input)
 	return (res);
 }
 
-void	is_valid_char(char *str)
+int	is_valid_string(char *str, char valid)
 {
 	int	i;
 
@@ -51,25 +52,50 @@ void	is_valid_char(char *str)
 			i++;
 		else if (str[i] == '-' || str[i] == '+')
 			i++;
-		else if (ft_isspace(str[i]))
+		else if (valid != '\0' && str[i] == valid)
 			i++;
 		else
-			exit_on_error();
+			return (-1);
 	}
+	return (0);
 }
 
-void	clean_input(int argc, char **argv)
+int	clean_input(int argc, char **argv)
 {
 	int	i;
 
 	i = 1;
 	while (i < argc)
 	{
-		is_valid_char(argv[i]);
 		remove_extra_spaces(argv[i]);
 		white_spaces_into_spaces(argv[i]);
 		i++;
 	}
+	return (0);
+}
+
+int arguments_format_is_correct(int argc, char **argv)
+{
+	int i;
+
+	i = 1;
+	while(i < argc)
+	{
+		if(ft_str_empty(argv[i]) == 1)
+			return (-1);
+		if(argc == 2)
+		{
+			if(is_valid_string(argv[1], ' ') != 0)
+				return (-1);
+		}
+		else
+		{
+			if(is_valid_string(argv[i], '\0') != 0)
+				return (-1);
+		}
+		i++;
+	}
+	return (0);
 }
 
 char	**parse_input(int argc, char **argv)
@@ -78,19 +104,20 @@ char	**parse_input(int argc, char **argv)
 	int		i;
 
 	i = 0;
-	clean_input(argc, argv);
+	if(arguments_format_is_correct(argc, argv) == -1)
+		return (NULL);
 	if (argc == 2)
 		res = ft_split(argv[1], ' ');
 	else
 	{
 		res = malloc(sizeof(char *) * argc);
 		if (!res)
-			exit_on_error();
+			return (NULL);
 		while (i < argc - 1)
 		{
 			res[i] = ft_strdup(argv[i + 1]);
 			if (res[i] == NULL)
-				exit_on_error();
+				return (NULL);
 			i++;
 		}
 		res[i] = NULL;
