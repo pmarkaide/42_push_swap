@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 13:54:02 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/07/26 14:00:28 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/07/27 11:59:04 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ SRCS_FILES = \
 	main.c \
 	input.c \
 	utils.c \
-	nbr_to_int.c \
-	list_utils.c \
+	nbrs_are_valid.c \
 	moves.c \
+	list_utils.c \
 	push_swap.c \
-	execute_moves.c \
-	costs.c \
 	stack_utils.c \
+	costs.c \
+	execute_moves.c \
 	free.c
 
 SRC_DIR = src/

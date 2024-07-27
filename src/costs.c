@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:14:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/26 15:00:44 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:44:11 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * @param a Pointer to the head of stack A.
  * @param nbr The number to compare against.
  * @return t_node* Pointer to the best node in stack A.
- * 		   The node B must be pushed below this node
+ * 			The node B must be pushed below this node
  */
 t_node	*best_node_in_a(t_node **a, int nbr)
 {
@@ -51,7 +51,7 @@ t_node	*best_node_in_a(t_node **a, int nbr)
  * @return  t_node* Pointer to the best node in stack A.
  * 			The node A must be pushed above this node.
  */
-t_node	*best_node_in_b(t_node **b, int nbr)
+static t_node	*best_node_in_b(t_node **b, int nbr)
 {
 	long	smaller;
 	t_node	*tmp;
@@ -76,16 +76,16 @@ t_node	*best_node_in_b(t_node **b, int nbr)
 
 /**
  * @brief Calculates rotation costs for a given node.
- * 		  The cost of A : rotate the node to the top.
- * 		  The cost of B : rotate best node in B to the top.
+ * 			The cost of A : rotate the node to the top.
+ * 			The cost of B : rotate best node in B to the top.
  *
  * @param a Pointer to the head of stack A.
  * @param b Pointer to the head of stack B.
  * @param node The node to calculate costs for.
  * @return int* Array containing the costs for rotating stacks A and B.
- * 		   Positive cost for rotations, negative for reverse rotating.
+ * 			Positive cost for rotations, negative for reverse rotating.
  */
-void	calculate_costs(t_node **a, t_node **b, t_node *node, int *costs)
+static void	calculate_costs(t_node **a, t_node **b, t_node *node, int *costs)
 {
 	t_node	*best_node;
 
@@ -96,13 +96,13 @@ void	calculate_costs(t_node **a, t_node **b, t_node *node, int *costs)
 
 /**
  * @brief Calculate the optimized total cost for a given node.
- * 		  If both costs have same sign, means we can use rr or rrr.
- * 		  Else, we can not save moves.
+ * 			If both costs have same sign, means we can use rr or rrr.
+ * 			Else, we can not save moves.
  *
  * @param costs Array containing the costs for stacks A and B.
  * @return int The optimized total cost.
  */
-int	optimized_total(int *costs)
+static int	optimized_total(int *costs)
 {
 	if ((costs[0] > 0 && costs[1] > 0) || (costs[0] < 0 && costs[1] < 0))
 	{
@@ -117,15 +117,15 @@ int	optimized_total(int *costs)
 
 /**
  * @brief Scans stack A and calculates the cheapest node to move to B.
- * 		  The cheapest node is the one that ending in the correct position
- * 		  in B, require the lowest ammount of moves.
+ * 			The cheapest node is the one that ending in the correct position
+ * 			in B, require the lowest ammount of moves.
  *
  * @param a Pointer to the head of stack A.
  * @param b Pointer to the head of stack B.
  * @param node The node to calculate the moves for.
  * @return int* Array containing the cheapest moves for stacks A and B.
  */
- void cheapest_moves(t_node **a, t_node **b, t_node *node, int *cheapest)
+void	cheapest_moves(t_node **a, t_node **b, t_node *node, int *cheapest)
 {
 	int		costs[2];
 	long	total;

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nbr_to_int.c                                       :+:      :+:    :+:   */
+/*   nbrs_are_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:05 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/26 15:34:38 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:37:19 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_overflow(long nb, char next_char, int neg)
+static int	check_overflow(long nb, char next_char, int neg)
 {
 	if (neg > 0)
 	{
@@ -31,7 +31,7 @@ int	check_overflow(long nb, char next_char, int neg)
 	return (0);
 }
 
-int	nbr_to_int(char *str, int *error)
+static int	nbr_to_int(char *str, int *error)
 {
 	int		i;
 	long	nb;
@@ -80,4 +80,39 @@ int	*input_nbrs_to_valid_ints(char **input, int len)
 		i++;
 	}
 	return (res);
+}
+
+static int	no_duplicated_ints(int *nbrs, int len)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < len)
+	{
+		j = i + 1;
+		while (j < len)
+		{
+			if (nbrs[i] == nbrs[j])
+				return (-1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	*nbrs_are_valid(char **input, int len)
+{
+	int	*nbrs;
+	int	error;
+
+	nbrs = input_nbrs_to_valid_ints(input, len);
+	error = no_duplicated_ints(nbrs, len);
+	if (error == -1)
+	{
+		free(nbrs);
+		nbrs = NULL;
+	}
+	return (nbrs);
 }

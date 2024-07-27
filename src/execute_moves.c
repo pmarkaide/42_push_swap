@@ -6,32 +6,32 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 11:51:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/25 16:11:53 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:45:14 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_moves(t_move move)
+static void	print_moves(t_move move)
 {
-		if (move == SA)
-			ft_putstr_fd("sa\n", 1);
-		else if (move == PA)
-			ft_putstr_fd("pa\n", 1);
-		else if (move == PB)
-			ft_putstr_fd("pb\n", 1);
-		else if (move == RA)
-			ft_putstr_fd("ra\n", 1);
-		else if (move == RB)
-			ft_putstr_fd("rb\n", 1);
-		else if (move == RR)
-			ft_putstr_fd("rr\n", 1);
-		else if (move == RRA)
-			ft_putstr_fd("rra\n", 1);
-		else if (move == RRB)
-			ft_putstr_fd("rrb\n", 1);
-		else if (move == RRR)
-			ft_putstr_fd("rrr\n", 1);
+	if (move == SA)
+		ft_putstr_fd("sa\n", 1);
+	else if (move == PA)
+		ft_putstr_fd("pa\n", 1);
+	else if (move == PB)
+		ft_putstr_fd("pb\n", 1);
+	else if (move == RA)
+		ft_putstr_fd("ra\n", 1);
+	else if (move == RB)
+		ft_putstr_fd("rb\n", 1);
+	else if (move == RR)
+		ft_putstr_fd("rr\n", 1);
+	else if (move == RRA)
+		ft_putstr_fd("rra\n", 1);
+	else if (move == RRB)
+		ft_putstr_fd("rrb\n", 1);
+	else if (move == RRR)
+		ft_putstr_fd("rrr\n", 1);
 }
 
 void	execute_moves(t_node **a, t_node **b, t_move move, int n)
@@ -56,7 +56,7 @@ void	execute_moves(t_node **a, t_node **b, t_move move, int n)
 	}
 }
 
-void	execute_rr(t_node **a, t_node **b, int *costs)
+static void	execute_rr(t_node **a, t_node **b, int *costs)
 {
 	int	common;
 	int	extra;
@@ -65,7 +65,7 @@ void	execute_rr(t_node **a, t_node **b, int *costs)
 		common = costs[0];
 	else
 		common = costs[1];
-	while(common-- > 0)
+	while (common-- > 0)
 	{
 		rotate(a);
 		rotate(b);
@@ -79,7 +79,7 @@ void	execute_rr(t_node **a, t_node **b, int *costs)
 		execute_moves(a, b, RB, extra);
 }
 
-void	execute_rrr(t_node **a, t_node **b, int *costs)
+static void	execute_rrr(t_node **a, t_node **b, int *costs)
 {
 	int	common;
 	int	extra;
@@ -90,7 +90,7 @@ void	execute_rrr(t_node **a, t_node **b, int *costs)
 		common = costs[0];
 	else
 		common = costs[1];
-	while(common-- > 0)
+	while (common-- > 0)
 	{
 		rev_rotate(a);
 		rev_rotate(b);

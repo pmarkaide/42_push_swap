@@ -6,13 +6,13 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 13:45:42 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/26 15:34:51 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 12:04:33 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_char_array(char ***array)
+static void	free_char_array(char ***array)
 {
 	int	i;
 
@@ -59,7 +59,7 @@ void	free_all(t_node **a, t_node **b, char **input, int *nbrs)
 	free_int_array(&nbrs);
 }
 
-void	exit_on_error(t_node **a, t_node **b, char **input, int *nbrs)
+void	err_exit(t_node **a, t_node **b, char **input, int *nbrs)
 {
 	free_all(a, b, input, nbrs);
 	ft_putstr_fd("Error\n", 2);

@@ -6,13 +6,13 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:35:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/26 15:00:31 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:56:50 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	final_sort_a(t_node **a)
+static void	final_sort_a(t_node **a)
 {
 	t_node	*tmp;
 	t_node	*min;
@@ -39,14 +39,13 @@ void	final_sort_a(t_node **a)
 	}
 }
 
-void turksort(t_node **a, t_node **b)
+static void	turksort(t_node **a, t_node **b)
 {
 	int		len;
 	int		cheapest[2];
 	t_node	*best_a;
 
 	len = stack_len(a) - 2;
-
 	execute_moves(a, b, PB, 2);
 	while (len-- > 3 && a != NULL)
 	{
@@ -96,5 +95,5 @@ void	push_swap(t_node **a, t_node **b)
 		sort_three(a);
 		return ;
 	}
-	turksort(a, b);	
+	turksort(a, b);
 }
