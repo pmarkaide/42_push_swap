@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:00:45 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 15:58:26 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 17:03:43 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@ static void	init_stack(t_node **a, int *nbrs, int len)
 	}
 }
 
+static void	prepare_input(int argc, char **argv, char ***input, int **nbrs)
+{
+	int	len;
+
+	*input = parse_input(argc, argv);
+	if (!(*input))
+		err_exit(NULL, NULL, *input, NULL);
+	len = ft_char_array_len(*input);
+	*nbrs = nbrs_are_valid(*input, len);
+	if (!(*nbrs))
+		err_exit(NULL, NULL, *input, *nbrs);
+}
+
 int	main(int argc, char **argv)
 {
 	char	**input;
@@ -46,18 +59,13 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2)
 		exit(1);
-	input = parse_input(argc, argv);
-	if (input == NULL)
-		err_exit(&a, &b, input, nbrs);
+	prepare_input(argc, argv, &input, &nbrs);
 	len = ft_char_array_len(input);
-	nbrs = nbrs_are_valid(input, len);
-	if (nbrs == NULL)
-		err_exit(&a, &b, input, nbrs);
 	init_stack(&a, nbrs, len);
-	if (a == NULL)
+	if (!a)
 		err_exit(&a, &b, input, nbrs);
 	len = checker(&a, &b);
-	if(len == -1)
+	if (len == -1)
 		err_exit(&a, &b, input, nbrs);
 	free_all(&a, &b, input, nbrs);
 	return (0);

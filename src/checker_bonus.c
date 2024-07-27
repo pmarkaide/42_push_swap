@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 13:58:28 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 16:36:40 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:42:47 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,27 @@ static t_move	operation_to_move(char *operation)
 		return (ERR);
 }
 
-int checker(t_node **a, t_node **b)
+int	checker(t_node **a, t_node **b)
 {
 	char	*operation;
-    t_move move;
+	t_move	move;
 
 	operation = get_next_line(STDIN_FILENO);
-    while(operation)
-    {
-        move = operation_to_move(operation);
-        if(move == ERR)
-        {
-            free(operation);
-            return(-1);
-        }
-        execute_moves(a, b, move, 1);
-        free(operation);
-        operation = get_next_line(STDIN_FILENO);
-    }
-    if (is_sorted(a))
+	while (operation)
+	{
+		move = operation_to_move(operation);
+		if (move == ERR)
+		{
+			free(operation);
+			return (-1);
+		}
+		execute_moves(a, b, move, 1);
+		free(operation);
+		operation = get_next_line(STDIN_FILENO);
+	}
+	if (is_sorted(a))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-	free(operation);
-    return(0);
+	return (0);
 }
