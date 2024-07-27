@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 13:54:02 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/07/27 14:14:40 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/07/27 16:01:37 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRCS_FILES = \
 
 SRC_DIR = src/
 SRCS = $(addprefix $(SRC_DIR), $(SRCS_FILES))
+
+BONUS_NAME = checker
 
 BONUS_FILES = \
 	main_bonus.c \
@@ -58,7 +60,7 @@ all: makelibft $(NAME)
 makelibft:
 	make -C $(LIBFT_DIR)
 
-bonus: makelibft .bonus
+bonus: makelibft checker
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(LIBFT_INCLUDE) $(INCLUDE) -c $< -o $@
@@ -66,9 +68,8 @@ bonus: makelibft .bonus
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_INCLUDE) $(INCLUDE) $(LIBFT) -o $(NAME)
 
-.bonus: $(BONUS_OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT_INCLUDE) $(INCLUDE) $(LIBFT) -o $(NAME)
-	touch .bonus
+checker: $(BONUS_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT_INCLUDE) $(INCLUDE) $(LIBFT) -o $(BONUS_NAME)
 
 clean:
 	make -C $(LIBFT_DIR) clean

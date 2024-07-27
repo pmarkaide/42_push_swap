@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:24:33 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 14:27:52 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:38:00 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef enum e_move
 	RR,
 	RRA,
 	RRB,
-	RRR
+	RRR,
+	ERR
 }					t_move;
 
 /* input */
@@ -68,7 +69,7 @@ int					stack_len(t_node **head);
 int					is_sorted(t_node **head);
 
 /* checker */
-void                checker(t_node **a, t_node **b);
+int					checker(t_node **a, t_node **b);
 
 /* execute_moves */
 void				execute_moves(t_node **a, t_node **b, t_move move, int n);

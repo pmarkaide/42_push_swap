@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:00:45 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 14:26:59 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:58:26 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int	main(int argc, char **argv)
 	init_stack(&a, nbrs, len);
 	if (a == NULL)
 		err_exit(&a, &b, input, nbrs);
-	checker(&a, &b);
+	len = checker(&a, &b);
+	if(len == -1)
+		err_exit(&a, &b, input, nbrs);
 	free_all(&a, &b, input, nbrs);
 	return (0);
 }

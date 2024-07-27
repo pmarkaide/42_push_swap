@@ -6,13 +6,13 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:03:42 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 14:26:59 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 14:50:38 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-static void	free_char_array(char ***array)
+void	free_char_array(char ***array)
 {
 	int	i;
 
