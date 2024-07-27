@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:07:06 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 12:04:33 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 12:54:36 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc < 2)
-		err_exit(&a, &b, input, nbrs);
+		exit(1);
 	input = parse_input(argc, argv);
 	if (input == NULL)
 		err_exit(&a, &b, input, nbrs);
