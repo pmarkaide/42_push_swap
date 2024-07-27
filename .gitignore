@@ -1,6 +1,7 @@
 subject.pdf
 *.code-workspace
 *test*
+*working*
 
 # Prerequisites
 *.d

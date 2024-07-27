@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:00:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 14:26:59 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 22:07:42 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	execute_moves(t_node **a, t_node **b, t_move move, int n)
 	{
 		if (move == SA)
 			swap(a);
-		else if (move == PA)
+		if (move == PA)
 			push(b, a);
-		else if (move == PB)
+		if (move == PB)
 			push(a, b);
-		else if (move == RA || move == RR)
+		if (move == RA || move == RR)
 			rotate(a);
-		else if (move == RB || move == RR)
+		if (move == RB || move == RR)
 			rotate(b);
-		else if (move == RRA || move == RRR)
+		if (move == RRA || move == RRR)
 			rev_rotate(a);
-		else if (move == RRB || move == RRR)
+		if (move == RRB || move == RRR)
 			rev_rotate(b);
 	}
 }

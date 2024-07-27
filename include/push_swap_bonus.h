@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:24:33 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 16:38:00 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/27 22:08:58 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void				execute_moves(t_node **a, t_node **b, t_move move, int n);
 void				free_int_array(int **array);
 void				free_all(t_node **a, t_node **b, char **input, int *nbrs);
 void				free_stack(t_node **stack);
+void				free_char_array(char ***array);
 
 #endif /* PUSH_SWAP_BONUS_H */
