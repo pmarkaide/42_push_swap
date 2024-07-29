@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:35:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 11:56:50 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/29 13:32:49 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ void	sort_three(t_node **head)
 
 void	push_swap(t_node **a, t_node **b)
 {
-	if (is_sorted(a) || stack_len(a) == 1)
-		return ;
 	if (stack_len(a) == 2)
 	{
 		if ((*a)->nbr > (*a)->next->nbr)

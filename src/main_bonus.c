@@ -31,14 +31,14 @@ static t_node	**init_stack(t_node **a, int *nbrs, int len)
 		append_node(a, tmp);
 		i++;
 	}
-	return(a);
+	return (a);
 }
 
 static t_node	*prepare_input(int argc, char **argv, t_node **a, t_node **b)
 {
-	int	len;
-	char **input;
-	int *nbrs;
+	int		len;
+	char	**input;
+	int		*nbrs;
 
 	input = NULL;
 	nbrs = NULL;
@@ -59,14 +59,14 @@ static t_node	*prepare_input(int argc, char **argv, t_node **a, t_node **b)
 		free_all(a, b, input, nbrs);
 		exit(0);
 	}
-	return(*a);
+	return (*a);
 }
 
 int	main(int argc, char **argv)
 {
 	t_node	*a;
 	t_node	*b;
-	int error;
+	int		error;
 
 	a = NULL;
 	b = NULL;
