@@ -22,8 +22,6 @@
 typedef struct s_node
 {
 	int				nbr;
-	int				index;
-	int				cost;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;

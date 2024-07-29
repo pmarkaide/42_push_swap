@@ -44,7 +44,7 @@ static int	nbr_to_int(char *str, int *error)
 		neg = -1;
 	if (*str == '-' || *str == '+')
 		str++;
-	if(!*str || !ft_isdigit(*str))
+	if (!*str || !ft_isdigit(*str))
 		*error = 1;
 	while (*str && ft_isdigit(*str))
 	{
@@ -52,7 +52,7 @@ static int	nbr_to_int(char *str, int *error)
 			*error = 1;
 		nb = 10 * nb + *str++ - '0';
 	}
-	if(*str != '\0')
+	if (*str != '\0')
 		*error = 1;
 	nb *= neg;
 	if (nb < INT_MIN || nb > INT_MAX)
@@ -110,7 +110,7 @@ int	*nbrs_are_valid(char **input, int len)
 	int	error;
 
 	nbrs = input_nbrs_to_valid_ints(input, len);
-	if(!nbrs)
+	if (!nbrs)
 		return (NULL);
 	error = no_duplicated_ints(nbrs, len);
 	if (error == -1)
