@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:24:33 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 22:08:58 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:35:34 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char				**parse_input(int argc, char **argv);
 void				remove_extra_spaces(char *str);
 void				white_spaces_into_spaces(char *str);
 void				err_exit(t_node **a, t_node **b, char **input, int *nbrs);
-int					ft_abs(int n);
 
 /* nbrs_are_valid */
 int					*nbrs_are_valid(char **input, int len);

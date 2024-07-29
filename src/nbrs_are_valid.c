@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:05 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/07/27 11:37:19 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:31:46 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,27 @@ static int	check_overflow(long nb, char next_char, int neg)
 
 static int	nbr_to_int(char *str, int *error)
 {
-	int		i;
 	long	nb;
 	int		neg;
 
-	i = 0;
 	nb = 0;
 	neg = 1;
-	while (str[i] && (ft_isspace(str[i])))
-		i++;
-	if (str[i] == '-')
+	while (*str && (ft_isspace(*str)))
+		str++;
+	if (*str == '-')
 		neg = -1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i] && ft_isdigit(str[i]))
+	if (*str == '-' || *str == '+')
+		str++;
+	if(!*str || !ft_isdigit(*str))
+		*error = 1;
+	while (*str && ft_isdigit(*str))
 	{
-		if (check_overflow(nb, str[i], neg))
+		if (check_overflow(nb, *str, neg))
 			*error = 1;
-		nb = 10 * nb + str[i++] - '0';
+		nb = 10 * nb + *str++ - '0';
 	}
+	if(*str != '\0')
+		*error = 1;
 	nb *= neg;
 	if (nb < INT_MIN || nb > INT_MAX)
 		*error = 1;
@@ -108,6 +110,8 @@ int	*nbrs_are_valid(char **input, int len)
 	int	error;
 
 	nbrs = input_nbrs_to_valid_ints(input, len);
+	if(!nbrs)
+		return (NULL);
 	error = no_duplicated_ints(nbrs, len);
 	if (error == -1)
 	{
