@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 13:54:02 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/07/27 16:01:37 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/07/29 15:50:10 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(SRCS_BONUS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 
 all: makelibft $(NAME)
 
